@@ -1,0 +1,14 @@
+services :
+  web : 
+      image : "nginx"
+    
+  db :
+      image : "mysql"
+      #environment:
+      #  - MYSQL_ROOT_PASSWORD=${MYSQL_PASS}
+      env_file:
+        - mysqlconfig.env
+
+
+# to run this file use docker compose -f docker-compose.dev.yml  up -d 
+# to stop/down this file use docker compose -f docker-compose.dev.yml  down --volume 

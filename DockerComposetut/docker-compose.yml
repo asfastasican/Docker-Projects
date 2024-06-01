@@ -1,0 +1,31 @@
+services :
+  web : 
+      image : "nginx"
+      ports:
+        - "8000:80"  # seting the port
+      networks:
+        - my_network
+      depends_on :   # will start the dependent service first
+        - db 
+        - rcache
+
+  rcache :
+      image : "redis:${TAG}"
+      #profiles:
+      # - "radiscache"    # for ignorring the file while making up
+      networks:
+        - my_network
+
+  db :
+      image : "mysql"
+      #environment:
+      #  - MYSQL_ROOT_PASSWORD=${MYSQL_PASS}
+      env_file:
+        - mysqlconfig.env
+      networks:
+        - my_network
+
+#creating the network
+networks:
+  my_network:
+    driver: bridge
