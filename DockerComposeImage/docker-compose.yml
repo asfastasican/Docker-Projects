@@ -1,0 +1,12 @@
+services :
+  app :
+    build :
+      dockerfile: Dockerfile # adding the docker file path to run it
+
+  web : 
+      image : "nginx"
+
+  db :
+      image : "mysql"
+      environment:
+        - MYSQL_ROOT_PASSWORD=hello123
